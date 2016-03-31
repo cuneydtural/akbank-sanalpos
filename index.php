@@ -19,9 +19,5 @@ $akbank->setCvv('222');
 $akbank->setExpiry('22');
 $akbank->setTotal('22');
 $akbank->setInstalment('222');
-$akbank->setxml();
+$akbank->setXml();
 $akbank->send();
-
-
-
-

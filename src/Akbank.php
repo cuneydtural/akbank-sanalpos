@@ -35,6 +35,10 @@ class Akbank {
 
     }
 
+    public function make() {
+        Return new Akbank();
+    }
+
     /**
      * @param $order_id
      *
