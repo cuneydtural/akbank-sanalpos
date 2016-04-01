@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Created by PhpStorm.
+ * User: turalcuneyd@gmail.com
+ * Web: http://www.cuneydtural.com
+ * Date: 31.03.2016
+ * Time: 14:48
+ */
+
 namespace Virtualpos;
 
 class Akbank {
@@ -184,7 +192,6 @@ class Akbank {
         $result = curl_exec($ch);
         preg_match('/<ProcReturnCode(.*)?>(.*)?<\/ProcReturnCode>/', $result, $ProcReturnCode);
         preg_match('/<ErrMsg(.*)?>(.*)?<\/ErrMsg>/', $result, $ErrMsg);
-
         $this->return_code = $return_code = $ProcReturnCode[2];
         $this->error_message = $error_message = $ErrMsg[2];
 

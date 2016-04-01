@@ -1,7 +1,8 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: cuneyd.tural
+ * User: turalcuneyd@gmail.com
+ * Web: http://www.cuneydtural.com
  * Date: 31.03.2016
  * Time: 14:48
  */
