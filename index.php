@@ -9,15 +9,18 @@
 require 'vendor/autoload.php';
 
 use Virtualpos\Akbank;
-use Virtualpos\DOMDocument;
 
-$akbank = new Akbank('000094797', 'admina', 'KUTU8954');
+$akbank = new Akbank('100100000', 'AKTESTAPI', 'AKBANK01');
 $akbank->setOrder('9898989898989');
-$akbank->setCurrency('222');
-$akbank->setPan('22');
-$akbank->setCvv('222');
-$akbank->setExpiry('22');
-$akbank->setTotal('22');
-$akbank->setInstalment('222');
+$akbank->setCurrency('949');
+$akbank->setPan('4938410114062912');
+$akbank->setCvv('956');
+$akbank->setExpiry('2001');
+$akbank->setTotal('50.00');
+$akbank->setInstalment('0');
+$akbank->setType('Auth');
 $akbank->setXml();
+$akbank->getXml();
 $akbank->send();
+
+

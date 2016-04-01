@@ -16,6 +16,7 @@ class Akbank {
     protected $cvv;
     protected $expiry;
     protected $instalment;
+    protected $type;
     protected $xml;
 
 
@@ -101,6 +102,10 @@ class Akbank {
         return $this->expiry = $expiry;
     }
 
+    public function setType($type) {
+        return $this->type = $type;
+    }
+
     /**
      * @param $instalment
      *
@@ -140,7 +145,7 @@ class Akbank {
         $x['Name'] = $dom->createElement('Name', $this->user_code);
         $x['Password'] = $dom->createElement('Password', $this->user_pass);
         $x['ClientId'] = $dom->createElement('ClientId', $this->shop_code);
-        $x['Type'] = $dom->createElement('ClientId', 'Auth');
+        $x['Type'] = $dom->createElement('Type', $this->type);
         $x['Total'] = $dom->createElement('Total', $this->total);
         $x['Currency'] = $dom->createElement('Currency', $this->currency);
         $x['Number'] = $dom->createElement('Number', $this->pan);
@@ -150,7 +155,7 @@ class Akbank {
         $x['Instalment'] = $dom->createElement('Instalment', $this->instalment);
 
         foreach($x as $node) {
-            $root->appendChild($node);
+         $root->appendChild($node);
         }
 
         $dom->appendChild($root);
@@ -159,7 +164,7 @@ class Akbank {
     }
 
     public function getXml() {
-        print $this->xml;
+        echo $this->xml;
     }
 
     public function send() {
@@ -167,8 +172,6 @@ class Akbank {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->post_url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
-        curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_TIMEOUT, 90);
         curl_setopt($ch, CURLOPT_POST, 1);
