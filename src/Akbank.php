@@ -38,10 +38,6 @@ class Akbank {
 
     }
 
-    public function make() {
-        Return new Akbank();
-    }
-
     /**
      * @param $order_id
      *
@@ -51,7 +47,8 @@ class Akbank {
      */
 
     public function setOrder($order_id) {
-        return $this->order_id = $order_id;
+        $this->order_id = $order_id;
+        return $this;
     }
 
     /**
@@ -61,7 +58,8 @@ class Akbank {
      */
 
     public function setTotal($total) {
-        return $this->total = $total;
+        $this->total = $total;
+        return $this;
     }
 
     /**
@@ -71,7 +69,8 @@ class Akbank {
      */
 
     public function setCurrency($currency) {
-        return $this->currency = $currency;
+        $this->currency = $currency;
+        return $this;
     }
 
     /**
@@ -81,7 +80,8 @@ class Akbank {
      */
 
     public function setPan($pan){
-        return $this->pan = $pan;
+        $this->pan = $pan;
+        return $this;
     }
 
     /**
@@ -91,7 +91,8 @@ class Akbank {
      */
 
     public function setCvv($cvv) {
-        return $this->cvv = $cvv;
+        $this->cvv = $cvv;
+        return $this;
     }
 
     /**
@@ -101,11 +102,13 @@ class Akbank {
      */
 
     public function setExpiry($expiry) {
-        return $this->expiry = $expiry;
+        $this->expiry = $expiry;
+        return $this;
     }
 
     public function setType($type) {
-        return $this->type = $type;
+        $this->type = $type;
+        return $this;
     }
 
     /**
@@ -168,7 +171,6 @@ class Akbank {
         echo $this->xml;
     }
 
-
     public function send() {
 
         $ch = curl_init();
@@ -178,6 +180,7 @@ class Akbank {
         curl_setopt($ch, CURLOPT_TIMEOUT, 90);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $this->xml);
+
         $result = curl_exec($ch);
         preg_match('/<ProcReturnCode(.*)?>(.*)?<\/ProcReturnCode>/', $result, $ProcReturnCode);
         preg_match('/<ErrMsg(.*)?>(.*)?<\/ErrMsg>/', $result, $ErrMsg);
@@ -186,7 +189,9 @@ class Akbank {
         $this->error_message = $error_message = $ErrMsg[2];
 
         if (curl_errno($ch)) {
-            echo curl_error($ch);
+            print curl_error($ch);
+        } else {
+            curl_close($ch);
         }
     }
 

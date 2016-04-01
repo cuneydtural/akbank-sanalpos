@@ -8,39 +8,12 @@
 require 'vendor/autoload.php';
 use Virtualpos\Akbank;
 
-/* Mağaza Kodu, Kullanıcı Adı, Şifre */
 $akbank = new Akbank('100100000', 'AKTESTAPI', 'AKBANK01');
-
-/* Sipariş Numarası  */
-$akbank->setOrder('9898989898989');
-
-/* Para Birimi  */
-$akbank->setCurrency('949');
-
-/* Kredi Kartı Numarası  */
-$akbank->setPan('4938410114062912');
-
-/* 3 Haneli güvenlik numarası  */
-$akbank->setCvv('956'); //
-
-/* Son Kullanma Tarihi  */
-$akbank->setExpiry('2001');
-
-/* Çekilecek Tutar  */
-$akbank->setTotal('50.00');
-
-/* Taksit  */
-$akbank->setInstalment('0');
-
-/* Provizyon  */
+$akbank->setOrder('9898989898989')->setCurrency('949')->setPan('4938410114062912');
+$akbank->setCvv('956')->setExpiry('2001')->setTotal('50.00')->setInstalment('0');
 $akbank->setType('Auth');
-
-/* XML formatına hazırla  */
 $akbank->setXml();
-
-/* Bankaya Gönder  */
 $akbank->send();
-
 
 /* Gelen Sonuca göre işlem yap  */
 if ($akbank->return_code == '00') {
