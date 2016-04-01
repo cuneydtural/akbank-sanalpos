@@ -18,6 +18,8 @@ class Akbank {
     protected $instalment;
     protected $type;
     protected $xml;
+    public $return_code;
+    public $error_message;
 
 
     /**
@@ -160,12 +162,12 @@ class Akbank {
 
         $dom->appendChild($root);
         $this->xml =  $dom->saveXML();
-
     }
 
     public function getXml() {
         echo $this->xml;
     }
+
 
     public function send() {
 
@@ -176,8 +178,12 @@ class Akbank {
         curl_setopt($ch, CURLOPT_TIMEOUT, 90);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $this->xml);
+        $result = curl_exec($ch);
+        preg_match('/<ProcReturnCode(.*)?>(.*)?<\/ProcReturnCode>/', $result, $ProcReturnCode);
+        preg_match('/<ErrMsg(.*)?>(.*)?<\/ErrMsg>/', $result, $ErrMsg);
 
-        echo $result = curl_exec($ch);
+        $this->return_code = $return_code = $ProcReturnCode[2];
+        $this->error_message = $error_message = $ErrMsg[2];
 
         if (curl_errno($ch)) {
             echo curl_error($ch);
