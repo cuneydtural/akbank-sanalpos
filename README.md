@@ -1,2 +1,2 @@
 # akbank-sanalpos
-Akbank sanal pos uygulaması 'a'
+Akbank sanal pos uygulaması `OpenSans`
