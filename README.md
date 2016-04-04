@@ -1,2 +1,2 @@
 # akbank-sanalpos
-Akbank sanal pos uygulaması
+Akbank sanal pos uygulaması 'a'
