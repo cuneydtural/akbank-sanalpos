@@ -1,5 +1,7 @@
 # akbank-sanalpos
-Akbank sanal pos uygulaması 
+Akbank Sanal Pos Sınıfı
+
+## Kullanımı
 
 `$akbank = new Akbank('100100000', 'AKTESTAPI', 'AKBANK01');
 $akbank->setOrder('9898989898989')->setCurrency('949')->setPan('4938410114062912');
